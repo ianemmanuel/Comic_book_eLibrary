@@ -7,7 +7,7 @@ This is a multiple user registration comic book elibrary system developed in dja
 To run the project:
 1. Clone the repository
 ```bash
-git clone https://github.com/nusrat-borsha/Django-custom-registration.git
+git clone git@github.com:ianemmanuel/Comic_book_eLibrary.git
 ```
 2. Install the requirements
 ```bash
