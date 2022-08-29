@@ -1,27 +1,29 @@
-<h3 class="mb-4 border-bottom pb-1">Filters</h3>
-			
-			<!-- Filter 2 -->
-			<div class="card mb-4">
-				<h6 class="card-header">Categories</h6>
-				<div class="list-group list-group-flush">
-                    {% for cat in cats %}
-					<li class="list-group-item">
-						<input value="{{cat.id}}" type="checkbox" />
-						{{cat.title}}
-					</li>
-                    {% endfor %}
+{% load static %}
+<script type="text/javascript" src="{% static 'product-filter.js' %}"></script>
+	<h3 class="mb-4 border-bottom pb-1">Filters</h3>
+				
+				<!-- Filter 2 -->
+				<div class="card mb-4">
+					<h6 class="card-header">Categories</h6>
+					<div class="list-group list-group-flush">
+						{% for cat in cats %}
+						<li class="list-group-item">
+							<input class="filter-checkbox" data-filter="category" value="{{cat.id}}" type="checkbox" />&nbsp;
+							{{cat.title}}
+						</li>
+						{% endfor %}
+					</div>
 				</div>
-			</div>
-			<!-- Filter 3 -->
-			<div class="card mb-4">
-				<h6 class="card-header">Publishers</h6>
-				<div class="list-group list-group-flush">
-                    {% for pub in publishers %}
-					<li class="list-group-item">
-						<input value="{{pub.id}}" type="checkbox" />
-						{{pub.title}}
-					</li>
-                    {% endfor %}
+				<!-- Filter 3 -->
+				<div class="card mb-4">
+					<h6 class="card-header">Publishers</h6>
+					<div class="list-group list-group-flush">
+						{% for pub in publishers %}
+						<li class="list-group-item">
+							<input class="filter-checkbox" data-filter="publisher" value="{{pub.id}}" type="checkbox" />&nbsp;
+							{{pub.title}}
+						</li>
+						{% endfor %}
+					</div>
 				</div>
-			</div>
 			<!-- Filter 3 -->
