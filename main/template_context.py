@@ -6,11 +6,16 @@ def get_filters(request):
     cats=Category.objects.all().order_by('-id')
 	# publishers=Comic.objects.distinct().values('publisher__title','publisher__id')
     publishers= Publisher.objects.all().order_by('-id')
-
+    minMaxPrice= Comic.objects.aggregate(Min('price'),Max('price'))
+	
     data={
 		'cats':cats,
 		'publishers':publishers,
+		'minMaxPrice':minMaxPrice,
+		
 	}
+
+	
 
     return data
 	

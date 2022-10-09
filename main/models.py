@@ -48,7 +48,7 @@ class Comic(models.Model):
     file = models.FileField(upload_to='comic_files/',default=image)
     slug  = models.CharField(max_length=400)
     detail= models.TextField()
-    price = models.DecimalField(max_digits=10,decimal_places=2)
+    price = models.DecimalField(max_digits=4,decimal_places=2)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher,on_delete=models.CASCADE) 
     status = models.BooleanField(default=True)

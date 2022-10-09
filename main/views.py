@@ -23,16 +23,13 @@ def publisher_list(request):
 # Comic-list
 
 def comic_list(request):
-	data=Comic.objects.all().order_by('-id')
-	# cats=Comic.objects.distinct().values('category__title','category__id')
-	cats=Category.objects.all().order_by('-id')
-	# publishers=	Comic.objects.distinct().values('publisher__title','publisher__id')
-	publishers= Publisher.objects.all().order_by('-id')
+	total_data=Comic.objects.count()
+	data=Comic.objects.all().order_by('-id')[:3]
+	
 	return render(request,'comic_list.html',
 	{
 		'data':data,
-		'cats':cats,
-		'publishers':publishers,
+		'total_data':total_data,
 	
 	})
 		
@@ -66,21 +63,29 @@ def search(request):
 	return render(request,'search.html',{'data':data})
 
 
-# # Filter Data
-# def filter_data(request):
+# Filter Data
+def filter_data(request):
 	
-# 	categories=request.GET.getlist('category[]')
-# 	publishers=request.GET.getlist('publisher[]')
+	categories=request.GET.getlist('category[]')
+	publishers=request.GET.getlist('publisher[]')
 	
-# 	minPrice=request.GET['minPrice']
-# 	maxPrice=request.GET['maxPrice']
-# 	allProducts=Comic.objects.all().order_by('-id').distinct()
+	minPrice=request.GET['minPrice']
+	maxPrice=request.GET['maxPrice']
+	allProducts=Comic.objects.all().order_by('-id').distinct()
 	
 	
-# 	if len(categories)>0:
-# 		allProducts=allProducts.filter(category__id__in=categories).distinct()
-# 	if len(publishers)>0:
-# 		allProducts=allProducts.filter(publisher__id__in=publishers).distinct()
-# 	t=render_to_string('ajax/product-list.html',{'data':allProducts})
-# 	return JsonResponse({'data':t})
+	if len(categories)>0:
+		allProducts=allProducts.filter(category__id__in=categories).distinct()
+	if len(publishers)>0:
+		allProducts=allProducts.filter(publisher__id__in=publishers).distinct()
+	t=render_to_string('ajax/product-list.html',{'data':allProducts})
+	return JsonResponse({'data':t})
 
+# Load More
+def load_more_data(request):
+	offset=int(request.GET['offset'])
+	limit=int(request.GET['limit'])
+	data=Comic.objects.all().order_by('-id')[offset:offset+limit]
+	t=render_to_string('ajax/product-list.html',{'data':data})
+	return JsonResponse({'data':t}
+)

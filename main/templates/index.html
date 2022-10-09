@@ -41,7 +41,8 @@
         <div class="card shadow">
           <a href="/comic/{{comic.slug}}/{{comic.id}}"><img src="/media/{{comic.image}}" class="card-img-top" alt="{{comic.title}}"></a>
           <div class="card-body">
-            <h6 class="card-text"><a href="/comic/{{comic.slug}}/{{comic.id}}">{{comic.title}}</a></h6>
+            <h5 class="card-text"><a href="/comic/{{comic.slug}}/{{comic.id}}">{{comic.title}}</a></h5>
+            <h6>$ <span class="product-price-{{comic.id}}">{{comic.price}}</span></h6>
           </div>
           <div class="card-footer">
             <button class="btn btn-sm btn-primary"><i class="fa fa-shopping-cart"></i></button>
