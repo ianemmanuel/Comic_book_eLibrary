@@ -13,7 +13,8 @@ urlpatterns=[
     path('category-product-list/<int:cat_id>',views.category_product_list,name='category-product-list'),
     path('publisher-comic-list/<int:publisher_id>',views.publisher_comic_list,name='publisher-comic-list'),
     path('comic/<str:slug>/<int:id>',views.comic_detail,name='comic_detail'),
-     path('load-more-data',views.load_more_data,name='load_more_data'),
+    path('load-more-data',views.load_more_data,name='load_more_data'),
+    path('add-to-cart',views.add_to_cart,name='add_to_cart'),
     
 ]
 
