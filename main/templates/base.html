@@ -43,7 +43,7 @@
 		        <a class="nav-link text-white" href="{% url 'publisher-list' %}">Publishers</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link text-white" href=""><i class="fa fa-shopping-cart"></i> Cart (<span class="cart-list">{{request.session.cartdata|length}}</span>)</a>
+		        <a class="nav-link text-white" href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart (<span class="cart-list">{{request.session.cartdata|length}}</span>)</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link text-white" href=""><i class="fa fa-user"></i> My Account</a>

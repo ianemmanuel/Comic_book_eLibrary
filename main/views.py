@@ -3,6 +3,7 @@ from .models import Banner,Comic, Category, Publisher
 from django.http import JsonResponse,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
+import math
 # Create your views here.
 # Home Page
 def home(request):
@@ -112,3 +113,28 @@ def add_to_cart(request):
 	else:
 		request.session['cartdata']=cart_p
 	return JsonResponse({'data':request.session['cartdata'],'totalitems':len(request.session['cartdata'])})
+
+#cart-list
+def cart_list(request):
+	total_amt=0
+	if 'cartdata' in request.session:
+		for p_id,item in request.session['cartdata'].items():
+			total_amt+=math.ceil(int(item['qty'])*float(item['price']))
+		return render(request, 'cart.html',{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':total_amt})
+	else:
+		return render(request, 'cart.html',{'cart_data':'','totalitems':0,'total_amt':total_amt})
+
+
+# Delete Cart Item
+def delete_cart_item(request):
+	p_id=str(request.GET['id'])
+	if 'cartdata' in request.session:
+		if p_id in request.session['cartdata']:
+			cart_data=request.session['cartdata']
+			del request.session['cartdata'][p_id]
+			request.session['cartdata']=cart_data
+	total_amt=0
+	for p_id,item in request.session['cartdata'].items():
+		total_amt+=math.ceil(int(item['qty'])*float(item['price']))
+	t=render_to_string('ajax/cart-list.html',{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':total_amt})
+	return JsonResponse({'data':t,'totalitems':len(request.session['cartdata'])})
