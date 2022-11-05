@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'main',
+    'paypal.standard.ipn',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -128,3 +129,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PAYPAL_RECEIVER_EMAIL = 'comicshop@business.com'
+PAYPAL_TEST = True
