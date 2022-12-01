@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from .models import Banner,Comic, Category, Publisher,CartOrder,CartOrderItems
+from .models import Banner,Comic, Category, Publisher,CartOrder,CartOrderItems, ComicReview
 from django.http import JsonResponse,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 import math
+from django.db.models import Max,Min,Count,Avg
 from django.contrib.auth.decorators import login_required
+from .forms import ReviewAdd
 
 #paypal
 from django.urls import reverse
@@ -65,7 +67,24 @@ def publisher_comic_list(request,publisher_id):
 def comic_detail(request,slug,id):
 	comic=Comic.objects.get(id=id)
 	related_products=Comic.objects.filter(category=comic.category).exclude(id=id)[:4]
-	return render(request,'comic_detail.html',{'data':comic,'related':related_products})
+	reviewForm = ReviewAdd()
+
+	# Check
+	canAdd = True
+	reviewCheck = ComicReview.objects.filter(user=request.user, comic=comic).count()
+	if request.user.is_authenticated:
+		if reviewCheck > 0:
+			canAdd = False
+	# End
+
+	# Fetch reviews
+	reviews = ComicReview.objects.filter(comic=comic)
+	# End
+
+	# Fetch avg rating for reviews
+	avg_reviews = ComicReview.objects.filter(comic=comic).aggregate(avg_rating=Avg('review_rating'))
+	# End
+	return render(request,'comic_detail.html',{'data':comic,'related':related_products, 'reviewForm':reviewForm,'canAdd':canAdd,'reviews':reviews,'avg_reviews':avg_reviews})
 
 # Search
 def search(request):
@@ -180,7 +199,7 @@ def checkout(request):
 			)
 		# End
 		for p_id,item in request.session['cartdata'].items():
-			total_amt+=int(item['qty'])*float(item['price'])
+			total_amt+=math.ceil(int(item['qty'])*float(item['price']))
 			# OrderItems
 			items=CartOrderItems.objects.create(
 				order=order,
@@ -217,3 +236,25 @@ def payment_done(request):
 @csrf_exempt
 def payment_canceled(request):
 	return render(request, 'payment-fail.html')
+
+# Save Review
+def save_review(request,pid):
+	comic=Comic.objects.get(pk=pid)
+	user=request.user
+	review=ComicReview.objects.create(
+		user=user,
+		comic=comic,
+		review_text=request.POST['review_text'],
+		review_rating=request.POST['review_rating'],
+		)
+	data={
+		'user':user.username,
+		'review_text':request.POST['review_text'],
+		'review_rating':request.POST['review_rating']
+	}
+
+	# Fetch avg rating for reviews
+	avg_reviews=ComicReview.objects.filter(comic=comic).aggregate(avg_rating=Avg('review_rating'))
+	# End
+
+	return JsonResponse({'bool':True,'data':data,'avg_reviews':avg_reviews})

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Publisher,Comic,Banner, CartOrder,CartOrderItems
+from .models import Category, Publisher,Comic,Banner, CartOrder,CartOrderItems, ComicReview
 
 # Register your models here.
 
@@ -29,3 +29,8 @@ admin.site.register(CartOrder,CartOrderAdmin)
 class CartOrderItemsAdmin(admin.ModelAdmin):
 	list_display=('invoice_no','item','image_tag','qty','price','total')
 admin.site.register(CartOrderItems,CartOrderItemsAdmin)
+
+
+class ComicReviewAdmin(admin.ModelAdmin):
+	list_display=('user','comic','review_text','get_review_rating')
+admin.site.register(ComicReview,ComicReviewAdmin)

@@ -90,3 +90,24 @@ class CartOrderItems(models.Model):
 
     def image_tag(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" />' % (self.image))
+
+
+# Comic Review
+RATING=(
+    (1,'1'),
+    (2,'2'),
+    (3,'3'),
+    (4,'4'),
+    (5,'5'),
+)
+class ComicReview(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    comic=models.ForeignKey(Comic,on_delete=models.CASCADE)
+    review_text=models.TextField()
+    review_rating=models.CharField(choices=RATING,max_length=150)
+
+    class Meta:
+        verbose_name_plural='Reviews'
+
+    def get_review_rating(self):
+        return self.review_rating
