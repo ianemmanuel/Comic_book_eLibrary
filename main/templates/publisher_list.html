@@ -2,17 +2,23 @@
 {% load static %}
 {% block content %}
 <main class="container my-4">
+	<link rel="stylesheet" type="text/css" href="{% static 'cards.css' %}" />
 	<!-- Featured Products -->
 	<h3 class="my-4 border-bottom pb-1">Publishers</h3>
 	<div class="row">
 		{% if data %}
 			{% for publisher in data %}
 			<div class="col-md-3 mb-4">
-				<div class="card shadow">
-				<a href="/publisher-comic-list/{{publisher.id}}"><img src="/media/{{publisher.image}}" class="card-img-top" alt="{{publisher.title}}" /></a>
-				<div class="card-body">
-					<h5 class="card-text"><a href="#">{{publisher.title}}</a></h5>
-				</div>
+				<div class="wrapper">
+					<div class="card">
+						<img src="/media/{{publisher.image}}"  alt="{{publisher.title}}" />
+						<div class="info">
+							<h1>{{publisher.title}}</h1>
+							<!-- <p>t is a long established fact that a reader will be distracted by
+								the readable content of a page  </p> -->
+							<a href="/publisher-comic-list/{{publisher.id}}" class="btn"> Explore <i class="bi bi-binoculars-fill"></i> </a>
+						</div>
+					</div>
 				</div>
 			</div>
 			{% endfor %}
@@ -20,3 +26,4 @@
 	</div>
 </main>
 {% endblock %}
+
