@@ -19,11 +19,10 @@ class ComicForm(forms.ModelForm):
 		widgets = {
 			'title' : forms.TextInput(attrs={'class':'form-control'}),
 			'detail' : forms.Textarea(attrs={'class':'form-control'}),
-			# 'image' : forms.TextInput(attrs={'class':'form-control'}),
-			# 'comicBook' : forms.TextInput(attrs={'class':'form-control'}),
 			'price' : forms.NumberInput(attrs={'class':'form-control'}),
 			'category' : forms.Select(attrs={'class':'form-control'}),
 			'publisher' : forms.Select(attrs={'class':'form-control'}),
-			'vendor' : forms.Select(attrs={'class':'form-control'}),
+			# 'vendor' : forms.Select(attrs={'class':'form-control'}),
+			'vendor' : forms.TextInput(attrs={'class':'form-control','value':'', 'id':'elder','type':'hidden'}),
 		
 		}
