@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Delete Comic Book | Comic Book Oasis
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<br/>
+<div class="container">
+  <h3 class="mb-4 border-bottom pb-1">
+    Delete: {{data.title}}
+  </h3>
+  
+</div>
+
+  <br/><br/>
+  <div class="container">
+    <div class="container">
+      <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">
+
+          {% csrf_token %}
+          
+          <strong> Are you sure you want to delete {{data.title}} ?</strong><br/>
+          <button class="btn btn-danger">Delete</button>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <script>
+    var name= "{{ user.id }}"
+    document.getElementById("elder").value = name;
+  </script> -->
+{% else %}
+  <br/><br/>
+  <div class="container">
+    <button class="btn btn-success" href="{% url 'login' %}"> Login </button>
+  </div>
+
+{% endif %}
+
+{% endblock %}

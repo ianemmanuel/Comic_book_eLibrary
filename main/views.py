@@ -6,7 +6,9 @@ from django.template.loader import render_to_string
 import math
 from django.db.models import Max,Min,Count,Avg
 from django.contrib.auth.decorators import login_required
-from .forms import ReviewAdd
+from .forms import ReviewAdd, ComicForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView,DeleteView
+from django.urls import reverse_lazy
 
 #paypal
 from django.urls import reverse
@@ -258,3 +260,20 @@ def save_review(request,pid):
 	# End
 
 	return JsonResponse({'bool':True,'data':data,'avg_reviews':avg_reviews})
+
+
+class AddComicView(CreateView):
+	model = Comic
+	form_class = ComicForm
+	template_name = 'add_post.html'
+	
+class UpdateComicView(UpdateView):
+	model = Comic
+	template_name = 'update_post.html'
+	form_class = ComicForm
+	# fields = ['title','image','comicBook','detail','price','category','publisher']
+
+class DeleteComicView(DeleteView):
+	model = Comic
+	template_name = 'delete_post.html'
+	success_url = reverse_lazy('home')

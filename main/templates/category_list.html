@@ -1,30 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<main class="container my-4">
-	<link rel="stylesheet" type="text/css" href="{% static 'cards.css' %}" />
-	<!-- Featured Products -->
-	<h3 class="my-4 border-bottom pb-1">Categories</h3>
-	<div class="row">
-		{% if data %}
-			{% for cat in data %}
-			<div class="col-md-3 mb-4">
-				<div class="wrapper">
-					<div class="card">
-						<img src="/media/{{cat.image}}"  alt="{{cat.title}}" />
-						<div class="info">
-							<h1>{{cat.title}}</h1>
-							{% if cat.description %}
-							<p>{{cat.description}}</p>
-							{% endif %}
-							<a href="/category-product-list/{{cat.id}}" class="btn"> Explore <i class="bi bi-binoculars-fill"></i> </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-		{% endif %}
-	</div>
-</main>
-{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'cards-list.css' %}" />
 
+<div class="title">
+	<h3>Categories</h3>
+</div>
+<div class="container">
+	{% if data %}
+		{% for cat in data %}
+			<div
+				class="slide"
+				style="background-image: url(/media/{{cat.image}});"
+				
+			>
+			<a href="/category-product-list/{{cat.id}}"><h3>{{cat.title}}</h3></a>
+			</div>
+		{% endfor %}
+	{% endif %}
+	
+  </div>
+  
+  <script  src="{% static 'cards-list.js' %}"></script>
+
+{% endblock %}

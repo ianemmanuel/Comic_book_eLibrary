@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.html import mark_safe
 from django.contrib.auth.models import User
 from demo_register import settings
+from django.urls import reverse
 
 # Create your models here.
 class Banner(models.Model):
@@ -47,14 +48,16 @@ class Publisher(models.Model):
 class Comic(models.Model):
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to="comic_imgs/")
-    file = models.FileField(upload_to='comic_files/',default=image)
-    slug  = models.CharField(max_length=400)
+    comicBook = models.FileField(upload_to='comic_files/')
+    slug  = models.CharField(max_length=400,default=title)
     detail= models.TextField()
     price = models.DecimalField(max_digits=4,decimal_places=2)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher,on_delete=models.CASCADE) 
     status = models.BooleanField(default=True)
     is_featured=models.BooleanField(default=False)
+    vendor=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, null=True)
+
 
 
     class Meta:
@@ -63,6 +66,11 @@ class Comic(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        # return reverse('comic_detail', args=(str(self.id)))
+        return reverse('home')
+
 
 
 class CartOrder(models.Model):

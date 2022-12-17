@@ -4,7 +4,7 @@
 <head>
 	<title>
 		{% block title %}
-			Ticket Shop
+			Comic Book Oasis
 		{% endblock %}
 	</title>
 	<!-- Font Awesome -->
@@ -31,12 +31,12 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
 		<div class="container">
-		  <a class="navbar-brand" href="/">Comic Oasis</a>
+		  <a class="navbar-brand" href="/">Comic Book Oasis</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNav">
-        {% if user.is_authenticated %}
+        
 					<form class="form-inline my-2 my-lg-0 " action="/search">
 						<div class="search-box">
 							<input class="search-txt" type="text" name="q" placeholder="Type to search">
@@ -46,8 +46,6 @@
 						</div>
 					</form>
 
-
-				{% endif %}
 		    <ul class="navbar-nav ml-auto">
 		      <li class="nav-item">
 		        <a class="nav-link text-white" href="/">Home</a>
@@ -58,25 +56,31 @@
 		      <li class="nav-item">
 		        <a class="nav-link text-white" href="{% url 'publisher-list' %}">Publishers</a>
 		      </li>
+          {% if user.is_authenticated %}
 		      <li class="nav-item">
 		        <a class="nav-link text-white" href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart (<span class="cart-list">{{request.session.cartdata|length}}</span>)</a>
 		      </li>
+          
 		      <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" id="navbarDropdown">
               My Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"></a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="{% url 'add_post' %}">Upload Comic</a>
+              <a class="dropdown-item" href="#"><i class="bi bi-person-check-fill"></i> My Account</a>
               <hr class="dropdown-divider">
-              {% if user.is_authenticated%}
               <a class="dropdown-item" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a>
-              {% else %}
-              <a class="dropdown-item" href="{% url 'register' %}"><i class="bi bi-check-circle-fill"></i>Sign Up</a>
-              <a class="dropdown-item" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-left"></i> Login</a>
-              {% endif %}
+              
             </div>
           </li>
+          {% else %}
+          <li class="nav-item">
+		        <a class="nav-link text-white" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-left"></i> Login</a>
+		      </li>
+          <li class="nav-item">
+		        <a class="nav-link text-white" href="{% url 'register' %}"><i class="bi bi-check-circle"></i> Sign Up</a>
+		      </li>
+          {% endif %}
 		    </ul>
 		  </div>
 		</div>
@@ -86,7 +90,7 @@
     
     {% endblock %}
 
-    <footer class="pt-4 my-md-5 pt-md-5 border-top container">
+    <!-- <footer class="pt-4 my-md-5 pt-md-5 border-top container">
         <div class="row">
           <div class="col-12 col-md">
             <a href="#">Comic Shop</a>
@@ -122,6 +126,6 @@
             </ul>
           </div>
         </div>
-      </footer>
+      </footer> -->
     </body>
     </html>

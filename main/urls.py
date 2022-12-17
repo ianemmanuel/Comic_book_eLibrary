@@ -1,5 +1,6 @@
 from django.urls import path,include
 from . import views
+from .views import *
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -23,6 +24,9 @@ urlpatterns=[
     path('payment-done/', views.payment_done, name='payment_done'),
     path('payment-cancelled/', views.payment_canceled, name='payment_cancelled'),
     path('save-review/<int:pid>',views.save_review, name='save-review'),
+    path('add_post/', AddComicView.as_view(), name='add_post'),
+    path('update-comic/<int:pk>', UpdateComicView.as_view(), name='update_comic'),
+    path('delete-comic/<int:pk>', DeleteComicView.as_view(), name='delete_comic'),
     
 ]
 

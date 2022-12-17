@@ -1,29 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<main class="container my-4">
-	<link rel="stylesheet" type="text/css" href="{% static 'cards.css' %}" />
-	<!-- Featured Products -->
-	<h3 class="my-4 border-bottom pb-1">Publishers</h3>
-	<div class="row">
-		{% if data %}
-			{% for publisher in data %}
-			<div class="col-md-3 mb-4">
-				<div class="wrapper">
-					<div class="card">
-						<img src="/media/{{publisher.image}}"  alt="{{publisher.title}}" />
-						<div class="info">
-							<h1>{{publisher.title}}</h1>
-							<!-- <p>t is a long established fact that a reader will be distracted by
-								the readable content of a page  </p> -->
-							<a href="/publisher-comic-list/{{publisher.id}}" class="btn"> Explore <i class="bi bi-binoculars-fill"></i> </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-		{% endif %}
-	</div>
-</main>
-{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'cards-list.css' %}" />
 
+<div class="title">
+	<h3>Publishers</h3>
+</div>
+<div class="container">
+	{% if data %}
+		{% for publisher in data %}
+			
+			<div
+				class="slide"
+				style="background-image: url(/media/{{publisher.image}});"
+			>
+				<a href="/publisher-comic-list/{{publisher.id}}"><h3>{{publisher.title}}</h3></a>
+			</div>
+			
+		{% endfor %}
+	{% endif %}
+	
+  </div>
+  
+  <script  src="{% static 'cards-list.js' %}"></script>
+
+{% endblock %}
