@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from demo_register import settings
 from django.urls import reverse
 
+from ckeditor.fields import RichTextField
+
 # Create your models here.
 class Banner(models.Model):
     img = models.ImageField(upload_to="banner_imgs/")
@@ -50,7 +52,8 @@ class Comic(models.Model):
     image = models.ImageField(upload_to="comic_imgs/")
     comicBook = models.FileField(upload_to='comic_files/')
     slug  = models.CharField(max_length=400,default=title)
-    detail= models.TextField()
+    # detail= models.TextField()
+    detail=RichTextField(blank=True, null=True)
     price = models.DecimalField(max_digits=4,decimal_places=2)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher,on_delete=models.CASCADE) 
@@ -115,7 +118,26 @@ class ComicReview(models.Model):
     review_rating=models.CharField(choices=RATING,max_length=150)
 
     class Meta:
-        verbose_name_plural='Reviews'
+        verbose_name_plural=' 7. Reviews'
 
     def get_review_rating(self):
         return self.review_rating
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    bio=models.TextField()
+    profile_pic = models.ImageField(upload_to="profile_imgs/",null=True, blank=True)
+    facebook_url=models.CharField(max_length=200, blank=True, null=True)
+    instagram_url=models.CharField(max_length=200, blank=True, null=True)
+    twitter_url=models.CharField(max_length=200, blank=True, null=True)
+    website_url=models.CharField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural='8. Profile'
+
+    def __str__(self):
+        return str(self.user)
+
+    def get_absolute_url(self):
+        return reverse('home')

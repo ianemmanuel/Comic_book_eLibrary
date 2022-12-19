@@ -1,10 +1,13 @@
 from django.contrib.auth import login, logout,authenticate
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.views.generic import CreateView
-from .form import CustomerSignUpForm, EmployeeSignUpForm
+from django.views.generic import CreateView, UpdateView
+from .form import CustomerSignUpForm, EmployeeSignUpForm, EditProfileForm,PasswordChangingForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 def register(request):
     return render(request, '../templates/register.html')
@@ -50,3 +53,22 @@ def login_request(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+
+class UserEditView(UpdateView):
+    form_class = EditProfileForm
+    template_name = '../templates/edit_profile.html'
+    success_url= '/'
+
+    def get_object(self):
+        return self.request.user
+
+
+class PasswordsChangeView(PasswordChangeView):
+  form_class = PasswordChangingForm
+  # form_class = PasswordChangeForm
+  success_url = reverse_lazy('password_success')
+  # success_url = reverse_lazy('login')
+
+def password_success(request):
+  return render(request, '../templates/password_success.html',{})
