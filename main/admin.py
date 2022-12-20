@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Category, Publisher,Comic,Banner, CartOrder,CartOrderItems, ComicReview, Profile
+from .models import Category, Publisher,Comic,Banner, CartOrder,CartOrderItems, ComicReview
 
 # Register your models here.
 
 admin.site.register(Publisher)
-admin.site.register(Profile)
+
 
 class CategoryAdmin(admin.ModelAdmin):
 	list_display=('title','image_tag')

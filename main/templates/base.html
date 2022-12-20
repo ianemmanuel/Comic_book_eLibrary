@@ -67,7 +67,16 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{% url 'add_post' %}">Upload Comic</a>
-              <a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="bi bi-person-check-fill"></i> My Account</a>
+              <a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="bi bi-person-check-fill"></i> Settings</a>
+
+			  {% if user.profile.id %}
+
+			  <a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">My Profile</a>
+			  <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a>
+			  {% else %}
+			  <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile</a>
+			  {% endif %}
+			  
               <hr class="dropdown-divider">
               <a class="dropdown-item" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a>
               

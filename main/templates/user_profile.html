@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}" />
+<section class="home">
+
+    <div class="image">
+        <img src="{{ page_user.profile_pic.url }}" alt="">
+    </div>
+
+    <div class="content">
+        <h3>{{page_user.user.first_name}} {{page_user.user.last_name}}</h3>
+        {% if user.is_employee %}
+        <span>Comic Book Vendor</span>
+        {% endif %}
+        <p>{{ page_user.bio}}</p>
+        <a href="#" class="btn"> about me <i class="fas fa-user"></i> </a>
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+</body>
+{% endblock %}
