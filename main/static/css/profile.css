@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap");
+
+
 * {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -25,7 +27,7 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-  background: crimson;
+  background: rgba(71, 224, 51, 0.74);
   border-radius: 5rem;
 }
 
@@ -34,7 +36,7 @@ html::-webkit-scrollbar-thumb {
     font-size: 1.7rem;}
 
 body {
-  background: #0d0d0d;
+  background: #ffffff;
   padding-bottom: 6.5rem;
 }
 
@@ -45,24 +47,24 @@ section {
 .heading {
   text-align: center;
   font-size: 6vw;
-  color: #fff;
+  color: rgb(12, 12, 12);
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
 
 .heading span {
   text-transform: uppercase;
-  color: crimson;
+  color: rgba(71, 224, 51, 0.74)
 }
 
 .btn {
   display: inline-block;
   margin-top: 1rem;
   border-radius: 5rem;
-  background: crimson;
+  background: rgba(71, 224, 51, 0.74);
   padding: .7rem;
   font-size: 1.7rem;
-  color: #fff;
+  color: rgb(27, 27, 27);
   padding-left: 2rem;
 }
 
@@ -73,7 +75,7 @@ section {
   font-size: 1.7rem;
   text-align: center;
   background: #fff;
-  color: crimson;
+  color: rgba(77, 187, 62, 0.74);
   border-radius: 50%;
   margin-left: 1rem;
   -webkit-transition: .2s linear;
@@ -94,7 +96,7 @@ section {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     gap: 4rem;
-    min-height: calc(100vh - 6.5rem);
+    min-height: calc(90vh - 6.0rem);
   }
   
   .home .image {
@@ -102,12 +104,14 @@ section {
         -ms-flex: 1 1 42rem;
             flex: 1 1 42rem;
     text-align: center;
+    border: rgba(71, 224, 51, 0.74);
   }
   
   .home .image img {
     height: 50rem;
     width: 50rem;
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    
   }
   
   .home .content {
@@ -117,21 +121,21 @@ section {
   }
   
   .home .content h3 {
-    color: #fff;
+    color: rgb(15, 15, 15);
     font-size: 4rem;
     padding-bottom: .5rem;
   }
   
   .home .content span {
     font-size: 3rem;
-    color: crimson;
+    color:rgba(71, 224, 51, 0.74);
     padding: .5rem 0;
     display: block;
   }
   
   .home .content p {
     font-size: 1.5rem;
-    color: #aaa;
+    color: rgb(44, 42, 42);
     padding: 1rem 0;
     line-height: 2;
   }
