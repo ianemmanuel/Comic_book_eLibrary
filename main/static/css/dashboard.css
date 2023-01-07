@@ -7,7 +7,7 @@
    --light-black:rgb(5, 5, 5);
    --light-white:#fff9;
    --dark-bg:rgba(0,0,0,.7);
-   --light-bg:#eee;
+   --light-bg:rgb(14, 13, 13);
    --border:.1rem solid var(--black);
    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
    --text-shadow:0 1.5rem 3rem rgba(0,0,0,.3);
@@ -39,7 +39,7 @@ section{
 
 .home-packages .box-container{
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(20rem, 0.5fr));
+   grid-template-columns: repeat(auto-fit, minmax(10rem, 0.5fr));
    gap: 0.5rem;
 }
 
@@ -49,12 +49,13 @@ section{
    background: var(--white);
 }
 
+ 
 .home-packages .box-container .box:hover .image img{
    transform: scale(1.1);
 }
 
 .home-packages .box-container .box .image{
-   height: 25rem;
+   height: 12rem;
    overflow: hidden;
 }
 
@@ -66,7 +67,7 @@ section{
 }
 
 .home-packages .box-container .box .content{
-   padding:1rem;
+   padding:0.3rem;
    text-align: center;
 }
 
@@ -74,18 +75,13 @@ section{
    font-size: 1 rem;
    color:var(--black);
 }
-
+/* 
 .home-packages .box-container .box .content p{
    font-size: 1rem;
    color:var(--light-black);
    line-height: 2;
    padding:1rem 0;
-}
-
-.home-packages .load-more{
-   text-align: center;
-   margin-top: 2rem;
-}
+} */
 
 
 

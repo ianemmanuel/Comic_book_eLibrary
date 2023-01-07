@@ -1,46 +1,73 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}" />
- <!-- swiper css link  -->
- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+<main class="container my-4">
+    <link rel="stylesheet" type="text/css" href="{% static 'cards.css' %}" />
+      <h3 class="my-4 border-bottom pb-1">Dashboard</h3>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h3 class="card-title">Settings <i class="bi bi-gear-fill"></i></h3>
+                  <a href="{% url 'edit_profile' %}" class="btn btn-success">Settings</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h3 class="card-title">My Profile <i class="bi bi-person-circle"></i> </h3>
+                  
+                  <a href="{% url 'show_profile_page' user.profile.id %}" class="btn btn-success">My Profile</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h3 class="card-title">Edit Profile <i class="bi bi-pen-fill"></i></h3>
+                  <a href="{% url 'edit_profile_page' user.profile.id %}" class="btn btn-success">Edit Profile</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h3 class="card-title">Create Profile <i class="bi bi-person-plus-fill"></i></h3>
+                  <a href="{% url 'create_profile_page' %}" class="btn btn-success">Create Profile</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h3 class="card-title">My Shop <i class="bi bi-shop"></i></h3>
+                 
+                  <a href="#" class="btn btn-success">My Shop</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h3 class="card-title">My Wishlist <i class="bi bi-bookmark-heart-fill"></i></h3>
+                  
+                  <a href="{% url 'my_wishlist' %}" class="btn btn-success">My Wishlist</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card mb-3" style="width: 20rem;">
+                <div class="card-body">
+                  <h3 class="card-title">My Reviews <i class="bi bi-star-fill"></i></h3>
+                  
+                  <a href="#" class="btn btn-success">My Reviews</a>
+                </div>
+              </div>
+        </div>
+      </div>
+  
+     
+  </main>
 
- <!-- font awesome cdn link  -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-<section class="home-packages">
-
-    <h1 class="heading-title"> Dashboard </h1>
- 
-    <div class="box-container">
- 
-       <div class="box">
-          <div class="content">
-            <i class="fas fa-envelope"></i>
-             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-             <a href="book.php" class="btn">Settings</a>
-          </div>
-       </div>
- 
-       <div class="box">
-          <div class="content">
-             <h3>My Profile</h3>
-             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-             <a href="book.php" class="btn">book now</a>
-          </div>
-       </div>
-       
-       <div class="box">
-          <div class="content">
-             <h3>My Shop</h3>
-             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, sint!</p>
-             <a href="book.php" class="btn">book now</a>
-          </div>
-       </div>
- 
-    </div>
- 
-   
- 
- </section>
 {% endblock %}
