@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Publisher,Comic,Banner, CartOrder,CartOrderItems, ComicReview
+from .models import Category, Publisher,Comic,Banner, CartOrder,CartOrderItems, ComicReview, Wishlist
 
 # Register your models here.
 
@@ -34,3 +34,6 @@ admin.site.register(CartOrderItems,CartOrderItemsAdmin)
 class ComicReviewAdmin(admin.ModelAdmin):
 	list_display=('user','comic','review_text','get_review_rating')
 admin.site.register(ComicReview,ComicReviewAdmin)
+
+
+admin.site.register(Wishlist)

@@ -11,7 +11,8 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView
 from django.views import generic
 from django.shortcuts import get_object_or_404, render
-
+from main.models import Wishlist, Comic, ComicReview
+from django.http import JsonResponse, HttpResponse
 
 def register(request):
     return render(request, '../templates/register.html')
@@ -106,3 +107,34 @@ class CreateProfilePageView(CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+
+# Wishlist
+def add_wishlist(request):
+    pid=request.GET['comic']
+    comic=Comic.objects.get(pk=pid)
+    data={}
+    checkw=Wishlist.objects.filter(comic=comic,user=request.user).count()
+
+    if checkw > 0:
+      data={
+        'bool':False
+      }
+    else:
+      wishlist=Wishlist.objects.create(
+        comic=comic,
+        user=request.user
+      )
+      data={
+        'bool':True
+      }
+    return JsonResponse(data)
+
+# My Wishlist
+def my_wishlist(request):
+	wlist=Wishlist.objects.filter(user=request.user).order_by('-id')
+	return render(request, 'dashboard/wishlist.html',{'wlist':wlist})
+
+# User Dashboard
+def my_dashboard(request):
+
+  return render(request,'dashboard/dashboard.html')

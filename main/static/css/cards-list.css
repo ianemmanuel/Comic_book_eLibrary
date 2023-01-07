@@ -6,10 +6,10 @@
 
 body {
   font-family: 'Muli', sans-serif;
-  overflow: hidden;
-  margin: 0;
+  /* overflow: hidden; */
+  margin: 10;
   background: rgb(253, 253, 253);
-  height: 100vh;
+  height: 0vh;
   /* display: flex; */
   /* justify-content: center; */
   /* align-items: center; */

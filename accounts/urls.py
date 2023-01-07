@@ -14,5 +14,10 @@ urlpatterns=[
      path('<int:pk>/profile/', views.ShowProfilePageView.as_view(), name= 'show_profile_page'),
      path('<int:pk>/edit_profile_page/', views.EditProfilePageView.as_view(), name= 'edit_profile_page'),
      path('create_profile_page/', views.CreateProfilePageView.as_view(), name= 'create_profile_page'),
+     path('my-dashboard',views.my_dashboard, name='my_dashboard'),
+       # Wishlist
+     path('add-wishlist',views.add_wishlist, name='add_wishlist'),
+     path('my-wishlist',views.my_wishlist, name='my_wishlist'),
+
       
 ]

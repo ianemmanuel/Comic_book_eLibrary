@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Banner,Comic, Category, Publisher,CartOrder,CartOrderItems, ComicReview
+from .models import Banner,Comic, Category, Publisher,CartOrder,CartOrderItems, ComicReview, Wishlist
 from django.http import JsonResponse,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
@@ -277,3 +277,5 @@ class DeleteComicView(DeleteView):
 	model = Comic
 	template_name = 'delete_post.html'
 	success_url = reverse_lazy('home')
+
+

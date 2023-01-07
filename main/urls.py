@@ -27,6 +27,7 @@ urlpatterns=[
     path('add_post/', AddComicView.as_view(), name='add_post'),
     path('update-comic/<int:pk>', UpdateComicView.as_view(), name='update_comic'),
     path('delete-comic/<int:pk>', DeleteComicView.as_view(), name='delete_comic'),
+   
     
 ]
 

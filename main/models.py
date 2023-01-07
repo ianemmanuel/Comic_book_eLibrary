@@ -124,3 +124,10 @@ class ComicReview(models.Model):
         return self.review_rating
 
 
+# WishList
+class Wishlist(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    comic=models.ForeignKey(Comic,on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural='8. Wishlist'
