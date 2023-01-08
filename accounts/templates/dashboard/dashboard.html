@@ -13,6 +13,7 @@
                 </div>
               </div>
         </div>
+        {% if user.profile.id %}
         <div class="col-md-4 mb-3">
             <div class="card mb-3" style="width: 20rem;">
                 <div class="card-body">
@@ -22,6 +23,7 @@
                 </div>
               </div>
         </div>
+        
         <div class="col-md-4 mb-3">
             <div class="card mb-3" style="width: 20rem;">
                 <div class="card-body">
@@ -30,6 +32,7 @@
                 </div>
               </div>
         </div>
+        {% else %}
         <div class="col-md-4 mb-3">
             <div class="card mb-3" style="width: 20rem;">
                 <div class="card-body">
@@ -38,15 +41,19 @@
                 </div>
               </div>
         </div>
+        {% endif %}
+        {% if request.user.is_employee%}
         <div class="col-md-4 mb-3">
             <div class="card mb-3" style="width: 20rem;">
                 <div class="card-body">
                   <h3 class="card-title">My Shop <i class="bi bi-shop"></i></h3>
                  
-                  <a href="#" class="btn btn-success">My Shop</a>
+                  <a href="{% url 'my_shop' %}" class="btn btn-success">My Shop</a>
                 </div>
               </div>
         </div>
+    
+        {% endif %}
         <div class="col-md-4 mb-3">
             <div class="card mb-3" style="width: 20rem;">
                 <div class="card-body">
@@ -61,7 +68,7 @@
                 <div class="card-body">
                   <h3 class="card-title">My Reviews <i class="bi bi-star-fill"></i></h3>
                   
-                  <a href="#" class="btn btn-success">My Reviews</a>
+                  <a href="{% url 'my-reviews' %}" class="btn btn-success">My Reviews</a>
                 </div>
               </div>
         </div>

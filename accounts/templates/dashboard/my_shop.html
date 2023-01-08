@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+	My Shop 
+{% endblock %}
+{% block content %}
+<main class="container my-4">
+	<!-- Featured Events -->
+	<h3 class="my-4 border-bottom pb-1">My Shop <i class="bi bi-shop"></i></h3>
+	<br>
+	<h3>Add Inventory: <a href="{% url 'add_post' %}" class="btn btn-success">Add <i class="bi bi-plus"></i></a></h3> 
+	<br>
+	{% if object_list %}
+	<div class="row">
+
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table-bordered table">
+					<thead>
+						<tr>
+							<th>Comic Book</th>
+							<th>Image</th>
+							<th>Price</th>
+              <th>Edit</th>
+              <th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for comic in object_list %}
+                            {% if user.id == comic.vendor.id %}
+						<tr>
+                            <td>
+							<a href="/comic/{{comic.slug}}/{{comic.id}}"><h5>{{comic.title}}</h5></a>
+
+                            </td>
+							<td>
+								<img width="100" src="/media/{{comic.image}}" alt="{{comic.title}}">
+							</td>
+							<td>{{comic.price}}</td>
+
+                            <td><a href="{% url 'update_comic' comic.pk %}" class="btn btn-primary"><i class="bi bi-pen-fill"></i> Edit</a></td>
+
+                            <td><a href="{% url 'delete_comic' comic.pk %}" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</a></td>
+						</tr>
+                        {% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+</main>
+{% endblock %}

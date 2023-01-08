@@ -18,6 +18,9 @@ urlpatterns=[
        # Wishlist
      path('add-wishlist',views.add_wishlist, name='add_wishlist'),
      path('my-wishlist',views.my_wishlist, name='my_wishlist'),
+     #Reviews
+    path('my-reviews',views.my_reviews, name='my-reviews'),
+    path('my_shop', views.ViewPost.as_view(), name='my_shop'),
 
       
 ]

@@ -68,11 +68,11 @@ section {
   padding-left: 2rem;
 }
 
-.btn i {
-  height: 4rem;
-  width: 4rem;
-  line-height: 4rem;
-  font-size: 1.7rem;
+/* .btn i {
+  height: 8rem;
+  width: 8rem;
+  line-height: 5rem;
+  font-size: 3 rem;
   text-align: center;
   background: #fff;
   color: rgba(77, 187, 62, 0.74);
@@ -83,8 +83,8 @@ section {
 }
 
 .btn:hover i {
-  margin-left: 2rem;
-}
+  margin-left: 4rem;
+} */
 
 .home {
     display: -webkit-box;

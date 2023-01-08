@@ -8,7 +8,7 @@ from .models import User, Profile
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, ListView
 from django.views import generic
 from django.shortcuts import get_object_or_404, render
 from main.models import Wishlist, Comic, ComicReview
@@ -138,3 +138,14 @@ def my_wishlist(request):
 def my_dashboard(request):
 
   return render(request,'dashboard/dashboard.html')
+
+# My Reviews
+def my_reviews(request):
+	reviews=ComicReview.objects.filter(user=request.user).order_by('-id')
+	return render(request, 'dashboard/reviews.html',{'reviews':reviews})
+
+#myShop
+
+class ViewPost(ListView):
+	model = Comic
+	template_name = 'dashboard/my_shop.html'
