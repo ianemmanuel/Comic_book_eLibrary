@@ -48,7 +48,7 @@
                 <div class="card-body">
                   <h3 class="card-title">My Shop <i class="bi bi-shop"></i></h3>
                  
-                  <a href="{% url 'my_shop' %}" class="btn btn-success">My Shop</a>
+                  <a href="{% url 'my_shop' user.profile.id %}" class="btn btn-success">My Shop</a>
                 </div>
               </div>
         </div>

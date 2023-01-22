@@ -55,7 +55,7 @@
 		        <a class="nav-link text-white" href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart (<span class="cart-list">{{request.session.cartdata|length}}</span>)</a>
 		      </li>
 			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle nav-link text-white" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<a class="nav-link dropdown-toggle nav-link text-white" href="{% url 'my_dashboard' %}" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-user"></i> My Account
 				</a>
 
@@ -125,7 +125,7 @@
  <!-- footer section ends -->
  
 
-	<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 	<!-- Bootstrap 4 JS -->
 	<script type="text/javascript" src="{% static 'bs4/bootstrap.min.js' %}"></script>
 	<!-- font awsome css -->

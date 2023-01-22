@@ -3,7 +3,8 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
 <section class="home">
-
+    current user: {{user.id}}
+    profile owner: {{page_user.user.pk}}
     <div class="image">
         <img src="{{ page_user.profile_pic.url }}" alt="">
     </div>
@@ -14,7 +15,11 @@
         <span>Comic Book Vendor</span>
         {% endif %}
         <p>{{ page_user.bio}}</p>
-        <a href="#" class="btn"> View Shop <i class="bi bi-shop"></i> </a>
+        {% if user.id == page_user.user.id%}
+        <a href="{% url 'my_shop' user.id %}" class="btn"> View Shop <i class="bi bi-shop"></i> </a>
+        {% else %} 
+        <a href="{% url 'my_shop' page_user.user.pk %}" class="btn"> View Shop1 <i class="bi bi-shop"></i> </a>
+        {% endif %}
     </div>
 
 </section>

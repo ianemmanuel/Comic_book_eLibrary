@@ -9,8 +9,8 @@
 			<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>Product</th>
-				<th>Qty</th>
+				<th>Comic Book</th>
+				<th>Quantity</th>
 				<th>Price</th>
 				<th>Total</th>
 			</tr>
@@ -20,7 +20,7 @@
 			<tr>
 				<td>
 					<img src="/media/{{item.image}}" width="50" />
-					<p><a href="/product/{{item.title|slugify}}/{{product_id}}">{{item.title}}</a></p>
+					<p>{{item.title}}</p>
 				</td>
 				<td>
 					{{item.qty}}

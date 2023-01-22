@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import ReviewAdd, ComicForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView,DeleteView
 from django.urls import reverse_lazy
-
+#download 
+from django.template.loader import get_template
+# from xhtml2pdf import pisa
 #paypal
 from django.urls import reverse
 from django.conf import settings
@@ -232,7 +234,38 @@ def checkout(request):
 @csrf_exempt
 def payment_done(request):
 	returnData=request.POST
-	return render(request, 'payment-success.html',{'data':returnData})
+		#Process Payment
+	# order_id='123'
+
+	total_amt=0
+	totalAmt=0
+	if 'cartdata' in request.session:
+		for p_id,item in request.session['cartdata'].items():
+			# total_amt+=int(item['qty'])*float(item['price'])
+			pass
+			# Order
+		order=CartOrder.objects.create(
+				user=request.user,
+				total_amt=totalAmt
+			)
+		# End
+		for p_id,item in request.session['cartdata'].items():
+			total_amt+=int(item['qty'])*float(item['price'])
+			# OrderItems
+			items=CartOrderItems.objects.create(
+				order=order,
+				invoice_no='INV-'+str(order.id),
+				item=item['title'],
+				image=item['image'],
+				qty=item['qty'],
+				price=item['price'],
+				total=float(item['qty'])*float(item['price'])
+				)
+			# End
+		comic=Comic.objects.get(pk=p_id)
+		return render(request, 'payment-success.html',{'items':items,'comic':comic, 'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata'])})
+
+
 
 
 @csrf_exempt
@@ -279,3 +312,21 @@ class DeleteComicView(DeleteView):
 	success_url = reverse_lazy('home')
 
 
+def ticket_view(request,pid):
+	comic=Comic.objects.get(pk=pid)
+	comicBook = comic.comicBook
+	
+	template_path = 'pdf1.html'
+	context = {'comic': comic}
+	response = HttpResponse(content_type='application/pdf')
+	response['Content-Disposition'] = 'attachment; filename="ticket.pdf"'
+	template = get_template(template_path)
+	html = template.render(context)
+
+	# # create a pdf
+	# pisa_status = pisa.CreatePDF(
+	# 		html, dest=response,)
+
+	# if pisa_status.err:
+	# 		return HttpResponse('We had some errors <pre>' + html + '</pre>')
+	return comicBook
