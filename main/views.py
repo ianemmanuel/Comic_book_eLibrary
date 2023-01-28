@@ -25,7 +25,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 def home(request):
 	banners=Banner.objects.all().order_by('-id')
 	data=Comic.objects.filter(is_featured=True).order_by('-id')
-	return render(request,'index.html',{'data':data,'banners':banners})
+	return render(request,'landing_page.html',{'data':data,'banners':banners})
 
 # Category
 def category_list(request):

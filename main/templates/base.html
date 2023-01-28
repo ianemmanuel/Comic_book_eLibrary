@@ -94,18 +94,24 @@
  
 	   <div class="box">
 		  <h3>quick links</h3>
-		  <a href="home.php"> <i class="fas fa-angle-right"></i> home</a>
-		  <a href="about.php"> <i class="fas fa-angle-right"></i> about</a>
-		  <a href="package.php"> <i class="fas fa-angle-right"></i> package</a>
-		  <a href="book.php"> <i class="fas fa-angle-right"></i> book</a>
+		  <a href="/"> <i class="fas fa-angle-right"></i> home</a>
+		  <a href="{% url 'publisher-list' %}"> <i class="fas fa-angle-right"></i> publishers</a>
+		  <a href="{% url 'category-list' %}"> <i class="fas fa-angle-right"></i> categories</a>
+		  {% if user.is_authenticated %}
+		  <a href="{% url 'logout' %}"> <i class="fas fa-angle-right"></i> logout</a>
+		  {% else %}
+		  <a href="{% url 'register' %}"> <i class="fas fa-angle-right"></i> sign up</a>
+		  <a href="{% url 'login' %}"> <i class="fas fa-angle-right"></i> Log in</a>
+		  {% endif %}
+
 	   </div>
  
 	   <div class="box">
 		  <h3>contact info</h3>
-		  <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-		  <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-		  <a href="#"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
-		  <a href="#"> <i class="fas fa-map"></i> mumbai, india - 400104 </a>
+		  <a href="#"> <i class="fas fa-phone"></i> +2547123456 </a>
+		  <a href="#"> <i class="fas fa-phone"></i> +2541234567 </a>
+		  <a href="#"> <i class="fas fa-envelope"></i> manuelodhis@gmail.com </a>
+		  <a href="#"> <i class="fas fa-map"></i> nairobi, kenya -00517 </a>
 	   </div>
  
 	   <div class="box">

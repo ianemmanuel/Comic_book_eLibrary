@@ -12,7 +12,7 @@ Vendor Sign Up
             <div class="col-md-6 mx-auto">
               <div class="card">
                 <div class="card-header text-black">
-                  <h2>Vendor Sign Up</h2>
+                  <h3> Sign Up <small>(Vendor)</small></h3>
                 </div>
                 <div class="card-body">
                     <form action="{% url 'employee_register' %}" method="POST" novalidate>
@@ -25,7 +25,8 @@ Vendor Sign Up
                                       <span style="color:red">{{ error }}</span>
                                     {% endfor %}
                          {% endfor %}
-                             <input type="submit" value="Register" class="btn btn-block btn-primary">
+                         <br>
+                             <input type="submit" value="Sign Up" class="btn btn-block btn-success">
                            </div>
                     </form>
                  </div>

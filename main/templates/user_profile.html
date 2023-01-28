@@ -3,8 +3,7 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
 <section class="home">
-    current user: {{user.id}}
-    profile owner: {{page_user.user.pk}}
+    
     <div class="image">
         <img src="{{ page_user.profile_pic.url }}" alt="">
     </div>
@@ -26,5 +25,9 @@
 
 <!-- home section ends -->
 
-</body>
+
 {% endblock %}
+
+
+
+
