@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Banner,Comic, Category, Publisher,CartOrder,CartOrderItems, ComicReview, Wishlist
 from django.http import JsonResponse,HttpResponse
 from django.contrib.auth.decorators import login_required

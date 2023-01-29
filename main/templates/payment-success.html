@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-		Tickets
+		Comic Books
 {% endblock %}
 {% block content %}
 
@@ -27,7 +27,7 @@
 
                     <!-- <a type="button" href="#" class="btn btn-success" id="btn"><i class="bi bi-download"></i> Download Ticket</a> -->
                    
-                    <a id="myDIV" type="button" class="btn btn-outline-success" href="/media/{{comic.comicBook}}"> <i class="bi bi-download"></i> Download</a>
+                    <a id="myDIV" type="button" download class="btn btn-success" href="{{comic.comicBook.url}}"><button id="btn" class="btn btn-success"><i class="bi bi-download"></i> Download</button></a>
                     
 
                 </td>
@@ -37,16 +37,12 @@
         </tbody>
 
     </table>
-    <a href="{% url 'home'%}" class="btn btn-primary" id="home1">Home</a>
+    <a href="{% url 'home'%}" class="btn btn-primary" id="home1">Done <i class="bi bi-check2"></i></a>
     <script>
-        var button = document.getElementById("myDIV");
+        var button = document.getElementById("btn");
         button.onclick = function(){
         button.setAttribute('disabled','disabled');
         };
-
-        var home= document.getElementById("home1");
-        home.onclick = function(){
-          alert("Make sure you have downloaded all your tickets. Your tickets will get lost once you leave this page ") };
 
     </script>
     <!-- <script type="text/javascript" src="{% static 'ticket.js' %}"></script> -->

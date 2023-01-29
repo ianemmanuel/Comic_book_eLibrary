@@ -39,7 +39,17 @@ section {
   padding-left: 2rem;
   padding-right: 2rem;
 }
-
+.btn1 {
+  display: inline-block;
+  margin-top: 1rem;
+  border-radius: 5rem;
+  background: rgba(71, 224, 51, 0.74);
+  padding: .7rem;
+  font-size: 1.5 rem;
+  color: rgb(27, 27, 27);
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
 
 
 .home {
@@ -97,3 +107,5 @@ section {
     padding: 1rem 0;
     line-height: 2;
   }
+
+  

@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-current user: {{user.id}}
-post author: {{data.vendor.id}}
+
 
 <main class="container my-4">
 	<!-- Featured Products -->
@@ -62,10 +61,12 @@ post author: {{data.vendor.id}}
 		<div class="col-md-6">
 
 			<h3 class="my-3">Reviews - <span class="avg-rating">{{avg_reviews.avg_rating}}</span>/5 <i class="fa fa-star text-warning"></i>
-				{% if user.is_authenticated and user.id != data.vendor.id and  canAdd %}
+				{% if user.is_authenticated %}
+				{% if user.id != data.vendor.id and  canAdd %}
 				
 				<button data-toggle="modal" data-target="#productReview" type="button" class="btn btn-warning btn-sm float-right reviewBtn">Add Review</button>
 				
+				{% endif %}
 				{% endif %}
 			</h3>
 			{% if user.is_authenticated %}
@@ -74,7 +75,7 @@ post author: {{data.vendor.id}}
 			<div class="modal-dialog">
 				<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Add Product Review</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Add Review</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button>
@@ -83,9 +84,11 @@ post author: {{data.vendor.id}}
 					<form method="post" id="addForm" action="{% url 'save-review' data.id %}">
 						{% csrf_token %}
 						<table class="table table-bordered">
-							{{reviewForm.as_table}}
+							
 							<tr>
+								{{reviewForm.as_table}}
 								<td colspan="2">
+									
 									<button type="submit" class="btn btn-primary">Submit</button>
 									<input type="reset" class="btn btn-dark" value="Reset" id="reset" />
 								</td>
