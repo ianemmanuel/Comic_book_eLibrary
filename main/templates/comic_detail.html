@@ -84,15 +84,13 @@
 					<form method="post" id="addForm" action="{% url 'save-review' data.id %}">
 						{% csrf_token %}
 						<table class="table table-bordered">
-							
-							<tr>
-								{{reviewForm.as_table}}
-								<td colspan="2">
-									
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<input type="reset" class="btn btn-dark" value="Reset" id="reset" />
-								</td>
-							</tr>
+							{{reviewForm.as_table}}
+						<tr>
+							<td colspan="2">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<input type="reset" class="btn btn-dark" value="Reset" id="reset" />
+							</td>
+						</tr>
 						</table>
 						<p class="ajaxRes"></p>
 				</form>

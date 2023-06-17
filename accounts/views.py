@@ -13,6 +13,11 @@ from django.views import generic
 from django.shortcuts import get_object_or_404, render
 from main.models import Wishlist, Comic, ComicReview
 from django.http import JsonResponse, HttpResponse
+#Recommendation
+import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
 
 def register(request):
     return render(request, '../templates/register.html')
@@ -149,3 +154,5 @@ def my_reviews(request):
 class ViewPost(ListView):
 	model = Comic
 	template_name = 'dashboard/my_shop.html'
+        
+
